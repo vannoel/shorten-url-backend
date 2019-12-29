@@ -1,0 +1,2 @@
+service: shorten-url-backend
+runtime: nodejs10
