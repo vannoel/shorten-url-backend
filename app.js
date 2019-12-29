@@ -12,14 +12,15 @@ const app = express();
 app.use(cors(corsOptions));
 app.use(express.json());
 
-app.all('*', (request, response, next) => {
-  response.setHeader('Content-Type', 'application/json');
-  next();
-})
-
 app.get('/', (request, response) => {
   response.redirect('https://shorten-url-dot-blacktoolbox.appspot.com/')
 });
+
+app.all('*', (request, response, next) => {
+  response.setHeader('Access-Control-Allow-Origin', '*');
+  response.setHeader('Content-Type', 'application/json');
+  next();
+})
 
 app.get('/shorten', (request, response) => {
   var url_parts = url.parse(request.url, true);
